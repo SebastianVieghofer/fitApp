@@ -29,7 +29,9 @@ Route::get('/settings', function () {return view('settings');})->name('settings'
 Route::get('/', 'ReadController@selectRandomWorkout')->middleware('auth')->name('workout');
 
 //Update
-Route::post('/updateUser', 'UpdateController@updateUser')->middleware('auth')->name('updateUser');
+Route::post('/updateFitnessLevel', 'UpdateController@updateFitnessLevel')->middleware('auth')->name('updateFitnessLevel');
+
+Route::post('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutCompleted')->middleware('auth')->name('updateAfterWorkoutCompleted');
 
 //Delete
 

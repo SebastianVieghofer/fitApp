@@ -6,8 +6,13 @@ use Illuminate\Http\Request;
 
 class UpdateController extends Controller
 {
-    public function updateUser(Request $request) {
+    public function updateFitnessLevel(Request $request) {
         $uc = new _UserController();
-        return $uc->updateOne($request);
+        return $uc->updateFitnessLevel($request);
     }
+
+    public function updateAfterWorkoutCompleted(Request $request) {
+        $uc = new _UserController();
+        return $uc->updateAfterWorkoutCompleted($request);
+    }    
 }

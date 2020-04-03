@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form method="POST" action="{{ route('updateUser') }}">
+    <form method="POST" action="{{ route('updateFitnessLevel') }}">
     @csrf
         <div class="form-group row">
             <label for="fitnesslevelLabel" class="col-md-4 col-form-label text-md-right">{{ __('Wähle dein Fitnesslevel') }}</label>
