@@ -3,9 +3,8 @@
 @section('content')
 <div class="container">
     <div>Mein Fitnesslevel: {{$fitnesslevelString}}</div>
-    <div id="clock" class="stickyTime"><span id="time">16:00</span> Minuten übrig!</div>
-    <div id="congrats" style="display: none">Yeah du hast es geschafft!</div>
-    <button type="button" onclick="startTimer();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
+    <div id="clock" class="stickyTime"><span id="demo">16m 0s</span> Minuten übrig!</div>
+    <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
 
     <div>
         <button type="button" class="explainWorkout" data-toggle="collapse" data-target="#explainWorkout">Wie funktioniert das Workout?</button>
@@ -72,27 +71,31 @@
 @endsection
 
 <script>
-    function startTimer(duration, display) {
-        document.getElementById("WoStartButton").style.display="none";
-        var timer = duration, minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
+    function countDown()
+    {
+        const DURATION_IN_MINUTES = 0.1;
+        const ONE_MINUTE = 60000;
+        var workoutDuration = DURATION_IN_MINUTES * ONE_MINUTE;
+        var countDownDate = new Date().getTime() + workoutDuration;
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+        document.getElementById("WoStartButton").style.display = "none";
 
-            display.textContent = minutes + ":" + seconds;
+        var updateCountdownEverySecond = setInterval(function() {
+            var todaysDateAndTime = new Date().getTime();
+            var distance = countDownDate - todaysDateAndTime;
 
-            if (--timer < 0) {
-                timer = 0;
-                document.getElementById("congrats").style.display="block";
-                document.getElementById("clock").style.display="none";
-                //UpdateController::function();
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(updateCountdownEverySecond);
+                document.getElementById("clock").innerHTML = "Geschafft!";
+                updateUserAfterWorkoutIsFinished();
             }
         }, 1000);
-        var fiveMinutes = 60 * 16,
-        display = document.querySelector('#time');
-        startTimer(fiveMinutes, display);
     }
 </script>
