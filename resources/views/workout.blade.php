@@ -3,9 +3,8 @@
 @section('content')
 <div class="container">
     <div>Mein Fitnesslevel: {{$fitnesslevelString}}</div>
-    <div id="clock" class="stickyTime"><span id="demo">16:00</span> Minuten übrig!</div>
-    <div id="congrats" style="display: none">Yeah du hast es geschafft!</div>
-    <button type="button" onclick="startTimer();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
+    <div id="clock" class="stickyTime"><span id="demo">16m 0s</span> Minuten übrig!</div>
+    <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
 
     <div>
         <button type="button" class="explainWorkout" data-toggle="collapse" data-target="#explainWorkout">Wie funktioniert das Workout?</button>
@@ -72,66 +71,44 @@
 @endsection
 
 <script>
-/*
-    function startTimer(duration, display) {
-        document.getElementById("WoStartButton").style.display="none";
-        var timer = duration, minutes, seconds;
-        var interval = setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
+    function countDown()
+    {
+        const DURATION_IN_MINUTES = 0.1;
+        const ONE_MINUTE = 60000;
+        var workoutDuration = DURATION_IN_MINUTES * ONE_MINUTE;
+        var countDownDate = new Date().getTime() + workoutDuration;
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+        document.getElementById("WoStartButton").style.display = "none";
 
-            display.textContent = minutes + ":" + seconds;
+        var updateCountdownEverySecond = setInterval(function() {
+            var todaysDateAndTime = new Date().getTime();
+            var distance = countDownDate - todaysDateAndTime;
 
-            if (--timer < 0) {
-                timer = 0;
-                document.getElementById("congrats").style.display="block";
-                document.getElementById("clock").style.display="none";
-                clearIntervalIfTimerIsZero(interval);
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(updateCountdownEverySecond);
+                document.getElementById("clock").innerHTML = "Geschafft!";
+                updateUserAfterWorkoutIsFinished();
             }
         }, 1000);
-        console.log(timer);
-        var fiveMinutes = 60 * 0.1,
-        display = document.querySelector('#time');
-        startTimer(fiveMinutes, display);
     }
 
-    function clearIntervalIfTimerIsZero(){
-        clearInterval(interval);
+    function updateUserAfterWorkoutIsFinished(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type:'POST',
+            url:'/updateAfterWorkoutCompleted'
+        });
     }
-    */
-
-    // 60000 ist 1 Minute in Millisekunden, da getTime() die Zeit in Millisekunden angibt
-    var workoutDuration = 0.5 * 60000;
-    var countDownDate = new Date().getTime() + workoutDuration;
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-
-    // Get today's date and time
-    var now = new Date().getTime();
-
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Display the result in the element with id="demo"
-    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-    + minutes + "m " + seconds + "s ";
-
-    console.log(distance);
-
-    // If the count down is finished, write some text
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-    }
-    }, 1000);
 </script>

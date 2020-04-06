@@ -21,6 +21,5 @@ class _UserController extends Controller
         $user = Auth::user();
         $user->points += 200;
         $user->save();
-        return redirect()->to('/'); 
     }
 }
