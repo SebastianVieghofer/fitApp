@@ -4,6 +4,11 @@
 <div class="container">
     <div>Mein Fitnesslevel: {{$fitnesslevelString}}</div>
     <div id="clock" class="stickyTime"><span id="demo">16m 0s</span> Minuten übrig!</div>
+    <div id="showAfterWorkout">
+        <div>Punkte für das Workout: 200</div>
+        <div>Deine Streak: {{$multiplier}}</div>
+        <div>Deine Punkte: 200 * {{$multiplier}} = {{200 * $multiplier}}</div>
+    </div>
     <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
 
     <div>
@@ -94,6 +99,7 @@
             if (distance < 0) {
                 clearInterval(updateCountdownEverySecond);
                 document.getElementById("clock").innerHTML = "Geschafft!";
+                document.getElementById("showAfterWorkout").style.display = "block";
                 updateUserAfterWorkoutIsFinished();
             }
         }, 1000);

@@ -16,6 +16,7 @@ class _WorkoutController extends Controller
         $user = Auth::user();
         $fitnesslevel = $user->fitnesslevel;
         $fitnesslevelString;
+        $multiplier = $user->multiplier;
         if($fitnesslevel === 0){
             $fitnesslevelString = 'Leicht';
         }else{
@@ -33,7 +34,8 @@ class _WorkoutController extends Controller
                 ->with('randomPush', $randomPush)
                 ->with('randomPull', $randomPull)
                 ->with('randomLeg', $randomLeg)
-                ->with('randomBackCore', $randomBackCore);
+                ->with('randomBackCore', $randomBackCore)
+                ->with('multiplier', $multiplier);
         }
         if($user->fitnesslevel == 1){
             $randomPush = Push::all()->where('fitnesslevel' , 1)->random();
@@ -46,7 +48,8 @@ class _WorkoutController extends Controller
                 ->with('randomPush', $randomPush)
                 ->with('randomPull', $randomPull)
                 ->with('randomLeg', $randomLeg)
-                ->with('randomBackCore', $randomBackCore);
+                ->with('randomBackCore', $randomBackCore)
+                ->with('multiplier', $multiplier);
         }
     }
 }

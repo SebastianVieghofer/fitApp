@@ -1372,3 +1372,7 @@ border-bottom-right-radius: 0;
     top: 0;
     background: #f8fafc;
   }
+
+  #showAfterWorkout{
+    display: none;
+  }
