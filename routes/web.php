@@ -22,12 +22,14 @@ Auth::routes(['verify' => true]);
 
 //return views
 Route::get('/settings', function () {return view('settings');})->name('settings');
-Route::get('/profile', function () {return view('profile');})->name('profile');
+
 
 //Create
 
 //Read
 Route::get('/', 'ReadController@selectRandomWorkout')->middleware('auth')->name('workout');
+
+Route::get('/profile', 'ReadController@displayGeneratedProfilePageData')->middleware('auth')->name('profile');
 
 //Update
 Route::post('/updateFitnessLevel', 'UpdateController@updateFitnessLevel')->middleware('auth')->name('updateFitnessLevel');
