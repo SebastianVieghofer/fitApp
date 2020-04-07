@@ -22,6 +22,7 @@ Auth::routes(['verify' => true]);
 
 //return views
 Route::get('/settings', function () {return view('settings');})->name('settings');
+Route::get('/profile', function () {return view('profile');})->name('profile');
 
 //Create
 
