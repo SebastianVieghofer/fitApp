@@ -16,10 +16,20 @@ class _UserController extends Controller
         return redirect()->to('/'); 
     }
 
-    public function updateAfterWorkoutCompleted(Request $request){
-        $requestArray = $request->all();
+    public function updateAfterWorkoutCompleted(){
+        $pointsController = new _PointsController;
+        $multiplierController = new _MultiplierController;
         $user = Auth::user();
-        $user->points += 200;
+
+        $totalPoints = $pointsController->calculatePoints($user);
+        $user->points = $user->points + $totalPoints;
+        
+        $afterWorkoutNewMultiplier = $multiplierController->defineNewMultiplier($user);
+        $user->multiplier = $afterWorkoutNewMultiplier;
+        var_dump($afterWorkoutNewMultiplier);
+
+        $user->lastWorkout = now();
+
         $user->save();
     }
 }

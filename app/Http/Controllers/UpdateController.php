@@ -11,8 +11,8 @@ class UpdateController extends Controller
         return $uc->updateFitnessLevel($request);
     }
 
-    public function updateAfterWorkoutCompleted(Request $request) {
+    public function updateAfterWorkoutCompleted() {
         $uc = new _UserController();
-        return $uc->updateAfterWorkoutCompleted($request);
+        return $uc->updateAfterWorkoutCompleted();
     }    
 }

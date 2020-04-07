@@ -31,10 +31,9 @@ Route::get('/', 'ReadController@selectRandomWorkout')->middleware('auth')->name(
 //Update
 Route::post('/updateFitnessLevel', 'UpdateController@updateFitnessLevel')->middleware('auth')->name('updateFitnessLevel');
 
-Route::post('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutCompleted')->middleware('auth')->name('updateAfterWorkoutCompleted');
+Route::get('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutCompleted')->middleware('auth')->name('updateAfterWorkoutCompleted');
 
 //Delete
-
 
 
 
