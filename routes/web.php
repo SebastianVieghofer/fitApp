@@ -38,7 +38,7 @@ Route::get('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutC
 
 //Delete
 
-
+Route::get('/test', '_TeamController@organizeTeamsOnRegristation')->middleware('auth')->name('organizeTeamsOnRegristation');
 
 
 // Auth::routes();

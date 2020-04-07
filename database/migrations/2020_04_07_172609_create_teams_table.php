@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableCreatePointsInUsers extends Migration
+class CreateTeamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AlterTableCreatePointsInUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('points')->default('0');
+        Schema::create('teams', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
         });
     }
 
@@ -25,8 +26,6 @@ class AlterTableCreatePointsInUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('teams');
     }
 }

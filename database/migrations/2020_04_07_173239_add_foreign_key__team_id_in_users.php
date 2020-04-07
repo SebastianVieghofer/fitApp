@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableCreatePointsInUsers extends Migration
+class AddForeignKeyTeamIdInUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AlterTableCreatePointsInUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('points')->default('0');
+            $table->foreign('_teamID')->references('id')->on('teams');
         });
     }
 
