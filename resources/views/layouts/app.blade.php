@@ -50,6 +50,11 @@
                             @endif
                         @else
                             <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link" href="{{ route('teams') }}" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Teams <span class="caret"></span>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="{{ route('workout') }}" role="button" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Workouts <span class="caret"></span>
                                 </a>

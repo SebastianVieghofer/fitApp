@@ -20,9 +20,6 @@ class _MultiplierController extends Controller
         if($user->lastWorkout > now()){
             return false;
         }
-        if($user->lastWorkout === null){
-            return false;
-        }
         return true;
     }
 
@@ -35,11 +32,13 @@ class _MultiplierController extends Controller
         }elseif($differenceInDays <= 2 && $user->multiplier >= 5){
             $multiplier = 5;
         }
-        var_dump($multiplier);
         return $multiplier;
     }
 
     private function calculateDifferenceInDays($user){
+        if($user->lastWorkout === null){
+            $user->lastWorkout = now();   
+        }
         $difference = now()->diff($user->lastWorkout);
         $differenceInDays = (int)$difference->format('%a');
         return $differenceInDays;

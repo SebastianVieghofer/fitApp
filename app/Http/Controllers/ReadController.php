@@ -16,4 +16,9 @@ class ReadController extends Controller
         $pc = new _ProfileController();
         return $pc->generateProfilePageData();
     }
+
+    public function showTeamsData() {
+        $tc = new _TeamController();
+        return $tc->provideTeamsData();
+    }
 }

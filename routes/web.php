@@ -31,6 +31,8 @@ Route::get('/', 'ReadController@selectRandomWorkout')->middleware('auth')->name(
 
 Route::get('/profile', 'ReadController@displayGeneratedProfilePageData')->middleware('auth')->name('profile');
 
+Route::get('/teams', 'ReadController@showTeamsData')->middleware('auth')->name('teams');
+
 //Update
 Route::post('/updateFitnessLevel', 'UpdateController@updateFitnessLevel')->middleware('auth')->name('updateFitnessLevel');
 
@@ -38,7 +40,8 @@ Route::get('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutC
 
 //Delete
 
-Route::get('/test', '_TeamController@organizeTeamsOnRegristation')->middleware('auth')->name('organizeTeamsOnRegristation');
+//LÖSCHEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//Route::get('/test', '_MultiplierController@test')->middleware('auth')->name('provideTeamsData');
 
 
 // Auth::routes();
