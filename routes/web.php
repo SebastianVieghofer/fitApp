@@ -40,10 +40,6 @@ Route::get('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutC
 
 //Delete
 
-//LÖSCHEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//Route::get('/test', '_MultiplierController@test')->middleware('auth')->name('provideTeamsData');
-
-
 // Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');

@@ -22,11 +22,10 @@ class _UserController extends Controller
         $user = Auth::user();
 
         $totalPoints = $pointsController->calculatePoints($user);
-        $user->points = $user->points + $totalPoints;
+        $user->points += $totalPoints;
         
-        $afterWorkoutNewMultiplier = $multiplierController->defineNewMultiplier($user);
-        $user->multiplier = $afterWorkoutNewMultiplier;
-        var_dump($afterWorkoutNewMultiplier);
+        $newMultiplier = $multiplierController->newMultiplierAfterWorkout($user);
+        $user->multiplier = $newMultiplier;
 
         $user->lastWorkout = now();
 

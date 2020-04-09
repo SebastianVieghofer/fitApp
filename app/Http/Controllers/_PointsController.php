@@ -10,9 +10,10 @@ class _PointsController extends Controller
 {
     public function calculatePoints($user){
         $user = Auth::user();
+        $multiplierController = new _MultiplierController;
+        $multiplier = $multiplierController->returnMultiplierAccordingToLastWorkout($user);
         $AVERAGEPOINTS = 200;
-        $multiplier = $user->multiplier;
-
+        
         $totalPoints = $AVERAGEPOINTS * $multiplier;
 
         return $totalPoints;

@@ -16,7 +16,8 @@ class _WorkoutController extends Controller
         $user = Auth::user();
         $fitnesslevel = $user->fitnesslevel;
         $fitnesslevelString;
-        $multiplier = $user->multiplier;
+        $multiplierController = new _MultiplierController;
+        $multiplier = $multiplierController->returnMultiplierAccordingToLastWorkout($user);
         if($fitnesslevel === 0){
             $fitnesslevelString = 'Leicht';
         }else{
