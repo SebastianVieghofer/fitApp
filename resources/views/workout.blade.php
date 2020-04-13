@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div>Mein Fitnesslevel: {{$fitnesslevelString}}</div>
     <div id="clock" class="stickyTime"><span id="demo">16m 0s</span> Minuten übrig!</div>
     <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
 

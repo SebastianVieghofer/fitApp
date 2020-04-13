@@ -67,7 +67,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <!--<a class="dropdown-item" href="#">Profile</a>-->
+                                    <a class="dropdown-item" href="{{route('profile')}}">Profil</a>
                                     <a class="dropdown-item" href="{{route('settings')}}">Settings</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

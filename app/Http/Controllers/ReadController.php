@@ -11,4 +11,10 @@ class ReadController extends Controller
         $wc = new _WorkoutController();
         return $wc->randomWorkout();
     }
+
+
+    public function displayGeneratedProfilePageData() {
+        $pc = new _ProfileController();
+        return $pc->generateProfilePageData();
+    }
 }

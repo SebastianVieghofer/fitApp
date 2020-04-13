@@ -28,6 +28,8 @@ Route::get('/settings', function () {return view('settings');})->name('settings'
 //Read
 Route::get('/', 'ReadController@selectRandomWorkout')->middleware('auth')->name('workout');
 
+Route::get('/profile', 'ReadController@displayGeneratedProfilePageData')->middleware('auth')->name('profile');
+
 //Update
 Route::post('/updateUser', 'UpdateController@updateUser')->middleware('auth')->name('updateUser');
 

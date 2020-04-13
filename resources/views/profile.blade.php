@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container">
-    hallo {{}}
+    <div>Mein Fitnesslevel: {{$fitnesslevelString}}</div>
 </div>
 @endsection
