@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div>Hey {{$username}}!</div>
+    <div>Fitnesslevel: {{$fitnesslevelString}}</div>
     <div>Deine Punkte: {{$totalPoints}}</div>
     <div>Dein Streak: {{$multiplier}}</div>
     @if($multiplier < 5)

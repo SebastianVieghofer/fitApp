@@ -2,7 +2,6 @@
 
 @section('content')
 <div class="container">
-    <div>Mein Fitnesslevel: {{$fitnesslevelString}}</div>
     <div id="clock" class="stickyTime"><span id="demo">16m 0s</span> Minuten übrig!</div>
     <div id="showAfterWorkout">
         <div>Punkte für das Workout: 200</div>
