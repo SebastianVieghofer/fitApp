@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div>Mein Fitnesslevel: {{$fitnesslevelString}}</div>
+    <div>Hallo {{$username}}</div>
+    <div>Fitnesslevel: {{$fitnesslevelString}}</div>
 </div>
 @endsection
