@@ -11,23 +11,9 @@
     </div>
     <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
 
-    <div>
-        <button type="button" class="explainWorkout" data-toggle="collapse" data-target="#explainWorkout">Wie funktioniert das Workout?</button>
-        <div id="explainWorkout" class="collapse">
-            Das Workout dauert insgesamt 16 Minuten. Jede Übung dauert genau 4 Minuten und jede Übung hat 2 Sätze. 
-            Ein Satz dauert 2 Minuten. Mache in diesen 2 Minuten die Übung 12 Mal. Wenn von den 2 Minuten noch Zeit 
-            übrig ist, dann mach in der restlichen Zeit Pause. In manchen Beinübungen musst du die Übung 1 mal mit dem
-            linken Fuß und einmal mit dem rechten Fuß absolvieren. Hier machst du die Übung 12 mal pro Bein. 
-            Beispiel: Wenn die Uhr von 16 runter zählt und die erste Übung Liegestütz sind, dann machst du von Minute
-            16 bis Minute 14 12 Liegestütz. Ab Minute 14 bis Minute 12 machst du nocheinmal 12 Liegestütz. Von Minute 12 bis 10
-            machst du dann die nächste Übung. Dieser Übungsmodus bleibt immer der gleiche, du dir diesen Erklärungstext also nur 
-            1 mal durchlesen und kannst ihn von nun an ignorieren. 
-        </div>
-    </div>
-
-    <div style="margin-bottom:50px; margin-top:50px">
+    <div style="margin-bottom:50px; margin-top:50px" id="push">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            1: {{$randomPush->name}}
+            {{$randomPush->name}}
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomPush->src}}" class="imageWidth"> 
@@ -37,9 +23,9 @@
         </div>
     </div>
 
-    <div style="margin-bottom:50px">
+    <div style="margin-bottom:50px" id="leg">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            2: {{$randomLeg->name}}
+            {{$randomLeg->name}}
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomLeg->src}}" class="imageWidth"> 
@@ -49,9 +35,9 @@
         </div>
     </div>
 
-    <div style="margin-bottom:50px">
+    <div style="margin-bottom:50px" id="pull">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            3: {{$randomPull->name}}
+            {{$randomPull->name}}
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomPull->src}}" class="imageWidth"> 
@@ -61,9 +47,9 @@
         </div>
     </div>
 
-    <div style="margin-bottom:50px">
+    <div style="margin-bottom:50px" id="backcore">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            4: {{$randomBackCore->name}}
+            {{$randomBackCore->name}}
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomBackCore->src}}" class="imageWidth">
@@ -78,7 +64,7 @@
 <script>
     function countDown()
     {
-        const DURATION_IN_MINUTES = 0.06;
+        const DURATION_IN_MINUTES = 16;
         const ONE_MINUTE = 60000;
         var workoutDuration = DURATION_IN_MINUTES * ONE_MINUTE;
         var countDownDate = new Date().getTime() + workoutDuration;
@@ -96,6 +82,8 @@
 
             document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
 
+            showExerciseAccordingToDistance(distance);
+
             if (distance < 0) {
                 clearInterval(updateCountdownEverySecond);
                 document.getElementById("clock").innerHTML = "Geschafft!";
@@ -103,6 +91,44 @@
                 updateUserAfterWorkoutIsFinished();
             }
         }, 1000);
+    }
+
+    function showExerciseAccordingToDistance(distance){
+        var firstTimeslot = 960000; //16 Minuten
+        var secondTimeslot = 840000; //14 Minuten
+        var thirdTimeslot = 720000; //12 Minuten
+        var fourthTimeslot = 600000; //10 Minuten
+        var fifthTimeslot = 480000; //8 Minuten
+        var sixthTimeslot = 360000; //6 Minuten
+        var seventhTimeslot = 240000; // 4 Minuten
+        var eightTimeslot = 120000; // 2 Minuten
+
+        if (distance < firstTimeslot && distance > secondTimeslot){
+            document.getElementById("push").style.display = "block";
+        }
+        if (distance < secondTimeslot && distance > thirdTimeslot){
+            document.getElementById("push").style.display = "none";
+            document.getElementById("leg").style.display = "block";
+        }
+        if (distance < thirdTimeslot && distance > fourthTimeslot){
+            document.getElementById("leg").style.display = "none";
+            document.getElementById("pull").style.display = "block";
+        }
+        if (distance < fourthTimeslot && distance > fifthTimeslot){
+            document.getElementById("backcore").style.display = "block";
+        }
+        if (distance < fifthTimeslot && distance > sixthTimeslot){
+            document.getElementById("push").style.display = "block";
+        }
+        if (distance < sixthTimeslot && distance > seventhTimeslot){
+            document.getElementById("leg").style.display = "block";
+        }
+        if (distance < seventhTimeslot && distance > eightTimeslot){
+            document.getElementById("pull").style.display = "block";
+        }
+        if (distance < eightTimeslot && distance > 0){
+            document.getElementById("backcore").style.display = "block";
+        }
     }
 
     function updateUserAfterWorkoutIsFinished(){

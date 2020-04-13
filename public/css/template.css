@@ -1360,15 +1360,6 @@ border-bottom-right-radius: 0;
     max-width: 750px;
   }
 
-  .explainWorkout{
-    border: 0;
-    padding: 0;
-    background: #f8fafc;
-    text-decoration: underline;
-    color: #3490dc;
-    font-size: 1.3em;
-  }
-
   .stickyTime{
     position: sticky !important;
     top: 0;
@@ -1376,5 +1367,18 @@ border-bottom-right-radius: 0;
   }
 
   #showAfterWorkout{
+    display: none;
+  }
+
+  #push{
+    display: none;
+  }
+  #leg{
+    display: none;
+  }
+  #pull{
+    display: none;
+  }
+  #backcore{
     display: none;
   }
