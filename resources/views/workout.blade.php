@@ -2,52 +2,68 @@
 
 @section('content')
 <div class="container">
-    <div id="clock" class="stickyTime"><span id="demo">16m 0s</span> Minuten übrig!</div>
-    <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
+    <div id="clock" class="stickyTime makeButtonInMiddle"><span id="demo">16m 0s</span></div>
+   
+    <div class="makeButtonInMiddle">
+        <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
+        <div id="displayNoneWhenButtonClicked">Für manche der Übungen brauchst du ein Handtuch.</div> 
+    </div>
 
-    <div style="margin-bottom:50px; margin-top:50px">
+    <div style="margin-bottom:50px; margin-top:50px" id="push">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            1: {{$randomPush->name}}
+            {{$randomPush->name}} 
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomPush->src}}" class="imageWidth"> 
+        </div>
+        <div class="highlightTeamData makeMarginBottomProfile">
+            8 - 12 Wiederholungen
         </div>
         <div class="margingWorkoutInbetween widthWorkoutDescription">
             {{$randomPush->description}}
         </div>
     </div>
 
-    <div style="margin-bottom:50px">
+    <div style="margin-bottom:50px" id="leg">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            2: {{$randomLeg->name}}
+            {{$randomLeg->name}} 
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomLeg->src}}" class="imageWidth"> 
+        </div>
+        <div class="highlightTeamData makeMarginBottomProfile">
+            8 - 12 Wiederholungen
         </div>
         <div class="margingWorkoutInbetween widthWorkoutDescription">
             {{$randomLeg->description}}
         </div>
     </div>
 
-    <div style="margin-bottom:50px">
+    <div style="margin-bottom:50px" id="pull">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            3: {{$randomPull->name}}
+            {{$randomPull->name}} 
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomPull->src}}" class="imageWidth"> 
+        </div>
+        <div class="highlightTeamData makeMarginBottomProfile">
+            8 - 12 Wiederholungen
         </div>
         <div class="margingWorkoutInbetween widthWorkoutDescription">
             {{$randomPull->description}}
         </div>
     </div>
 
-    <div style="margin-bottom:50px">
+    <div style="margin-bottom:50px" id="backcore">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            4: {{$randomBackCore->name}}
+            {{$randomBackCore->name}} 
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomBackCore->src}}" class="imageWidth">
         </div> 
+        <div class="highlightTeamData makeMarginBottomProfile">
+            8 - 12 Wiederholungen
+        </div>
         <div class="margingWorkoutInbetween widthWorkoutDescription">
             {{$randomBackCore->description}}
         </div>
@@ -64,6 +80,8 @@
         var countDownDate = new Date().getTime() + workoutDuration;
 
         document.getElementById("WoStartButton").style.display = "none";
+        document.getElementById("displayNoneWhenButtonClicked").style.display = "none";
+        document.getElementById("clock").style.display = "block";
 
         var updateCountdownEverySecond = setInterval(function() {
             var todaysDateAndTime = new Date().getTime();
@@ -76,11 +94,56 @@
 
             document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
 
+            showExerciseAccordingToDistance(distance);
+
             if (distance < 0) {
                 clearInterval(updateCountdownEverySecond);
                 document.getElementById("clock").innerHTML = "Geschafft!";
-                updateUserAfterWorkoutIsFinished();
+                document.getElementById("backcore").style.display = "none";
+                //updateUserAfterWorkoutIsFinished();
             }
         }, 1000);
+    }
+
+    function showExerciseAccordingToDistance(distance){
+        var firstTimeslot = 960000; //16 Minuten
+        var secondTimeslot = 840000; //14 Minuten
+        var thirdTimeslot = 720000; //12 Minuten
+        var fourthTimeslot = 600000; //10 Minuten
+        var fifthTimeslot = 480000; //8 Minuten
+        var sixthTimeslot = 360000; //6 Minuten
+        var seventhTimeslot = 240000; // 4 Minuten
+        var eightTimeslot = 120000; // 2 Minuten
+        if (distance < firstTimeslot && distance > secondTimeslot){
+            document.getElementById("push").style.display = "block";
+        }
+        if (distance < secondTimeslot && distance > thirdTimeslot){
+            document.getElementById("push").style.display = "none";
+            document.getElementById("leg").style.display = "block";
+        }
+        if (distance < thirdTimeslot && distance > fourthTimeslot){
+            document.getElementById("leg").style.display = "none";
+            document.getElementById("pull").style.display = "block";
+        }
+        if (distance < fourthTimeslot && distance > fifthTimeslot){
+            document.getElementById("pull").style.display = "none";
+            document.getElementById("backcore").style.display = "block";
+        }
+        if (distance < fifthTimeslot && distance > sixthTimeslot){
+            document.getElementById("backcore").style.display = "none";
+            document.getElementById("push").style.display = "block";
+        }
+        if (distance < sixthTimeslot && distance > seventhTimeslot){
+            document.getElementById("push").style.display = "none";
+            document.getElementById("leg").style.display = "block";
+        }
+        if (distance < seventhTimeslot && distance > eightTimeslot){
+            document.getElementById("leg").style.display = "none";
+            document.getElementById("pull").style.display = "block";
+        }
+        if (distance < eightTimeslot && distance > 0){
+            document.getElementById("pull").style.display = "none";
+            document.getElementById("backcore").style.display = "block";
+        }
     }
 </script>
