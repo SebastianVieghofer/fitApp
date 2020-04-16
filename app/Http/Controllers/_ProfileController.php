@@ -15,10 +15,10 @@ class _ProfileController extends Controller
         $fitnesslevelString;
 
         if($fitnesslevel === 0){
-            $fitnesslevelString = "Anfänger";
+            $fitnesslevelString = "Ich trainiere ab und zu.";
         }
         if($fitnesslevel === 1){
-            $fitnesslevelString = "Fortgeschritten";
+            $fitnesslevelString = "Ich trainiere regelmäßig und bin richtig fit!";
         }
 
         return view('profile')
