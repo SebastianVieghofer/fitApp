@@ -27,6 +27,8 @@ class _UserController extends Controller
         $newMultiplier = $multiplierController->newMultiplierAfterWorkout($user);
         $user->multiplier = $newMultiplier;
 
+        $user->workoutCounter = $user->workoutCounter + 1;
+
         $user->lastWorkout = now();
 
         $user->save();
