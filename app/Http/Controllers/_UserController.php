@@ -15,4 +15,10 @@ class _UserController extends Controller
         $user->save();
         return redirect()->to('/'); 
     }
+
+    public function updateAfterWorkoutCompleted(){
+        $user = Auth::user();
+        $user->workoutCounter = $user->workoutCounter + 1;
+        $user->save();
+    }
 }

@@ -100,7 +100,7 @@
                 clearInterval(updateCountdownEverySecond);
                 document.getElementById("clock").innerHTML = "Geschafft!";
                 document.getElementById("backcore").style.display = "none";
-                //updateUserAfterWorkoutIsFinished();
+                updateUserAfterWorkoutIsFinished();
             }
         }, 1000);
     }
@@ -146,4 +146,16 @@
             document.getElementById("backcore").style.display = "block";
         }
     }
+
+    function updateUserAfterWorkoutIsFinished(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type:'GET',
+            url:'/updateAfterWorkoutCompleted',
+        });
+    }   
 </script>

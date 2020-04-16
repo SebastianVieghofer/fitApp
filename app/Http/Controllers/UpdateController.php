@@ -10,4 +10,9 @@ class UpdateController extends Controller
         $uc = new _UserController();
         return $uc->updateOne($request);
     }
+
+    public function updateAfterWorkoutCompleted() {
+        $uc = new _UserController();
+        return $uc->updateAfterWorkoutCompleted();
+    }
 }

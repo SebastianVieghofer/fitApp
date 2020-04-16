@@ -33,6 +33,8 @@ Route::get('/profile', 'ReadController@displayGeneratedProfilePageData')->middle
 //Update
 Route::post('/updateUser', 'UpdateController@updateUser')->middleware('auth')->name('updateUser');
 
+Route::get('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutCompleted')->middleware('auth')->name('updateAfterWorkoutCompleted');
+
 //Delete
 
 
