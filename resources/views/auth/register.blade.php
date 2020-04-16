@@ -62,17 +62,17 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="fitnesslevelLabel" class="col-md-4 col-form-label text-md-right">{{ __('Wähle dein Fitnesslevel') }}</label>
+                            <label for="fitnesslevelLabel" class="col-md-4 col-form-label text-md-right">{{ __('Wie fit bist du?') }}</label>
 
                             <fieldset id="fitnesslevelLabel" style="border:0">
                                 <div class="col-md-6">
                                     <div>
                                         <input type="radio" name="fitnesslevel" value="0" id="beginner" checked>
-                                        <label for="beginner">Leicht</label>
+                                        <label for="beginner">Ich trainiere ab und zu.</label>
                                     </div>
                                     <div>
                                         <input type="radio" name="fitnesslevel" value="1" id="pro">
-                                        <label for="pro">Anspruchsvoll</label>
+                                        <label for="pro">Ich trainiere regelmäßig und bin richtig fit!</label>
                                     </div>
                                 </div>
                             </fieldset>

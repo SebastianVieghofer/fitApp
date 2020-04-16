@@ -39,11 +39,11 @@ class _TeamController extends Controller
         $numberOfTeamMates = User::all()->where('_teamID' , $userTeamID)->count();
         $numberOfEnemys = User::all()->where('_teamID' , $enemyTeamID)->count();
 
-        return $this->returnTeamView($teamData, $teamTotalPoints, $enemyTotalPoints, $numberOfTeamMates, $numberOfEnemys);
+        return $this->returnTeamView($teamData, $teamTotalPoints, $enemyTotalPoints, $numberOfTeamMates, $numberOfEnemys, $userTeamID, $enemyTeamID);
     }
 
     private function provideTeamData($teamID){
-        $allUsersFromTeam = User::all()->where('_teamID' , $teamID);
+        $allUsersFromTeam = User::all()->where('_teamID' , $teamID)->sortByDesc('points');
         $team = [];
         foreach($allUsersFromTeam as $oneUser){
             $team[] = $oneUser;
@@ -70,12 +70,14 @@ class _TeamController extends Controller
         return $totalPoints;
     }
 
-    private function returnTeamView($teamData, $teamTotalPoints, $enemyTotalPoints, $numberOfTeamMates, $numberOfEnemys){
+    private function returnTeamView($teamData, $teamTotalPoints, $enemyTotalPoints, $numberOfTeamMates, $numberOfEnemys, $userTeamID, $enemyTeamID){
         return view('teams')
                 ->with('teamData', $teamData)
                 ->with('teamTotalPoints', $teamTotalPoints)
                 ->with('enemyTotalPoints', $enemyTotalPoints)
                 ->with('numberOfTeamMates', $numberOfTeamMates)
-                ->with('numberOfEnemys', $numberOfEnemys);
+                ->with('numberOfEnemys', $numberOfEnemys)
+                ->with('userTeamID', $userTeamID)
+                ->with('enemyTeamID', $enemyTeamID);
     }
 }

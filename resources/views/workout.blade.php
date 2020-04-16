@@ -2,20 +2,26 @@
 
 @section('content')
 <div class="container">
-    <div id="clock" class="stickyTime"><span id="demo">16m 0s</span> Minuten übrig!</div>
+    <div id="clock" class="stickyTime makeButtonInMiddle"><span id="demo">16m 0s</span></div>
     <div id="showAfterWorkout">
-        <div>Punkte für das Workout: 200</div>
-        <div>Deine Streak: {{$multiplier}}</div>
-        <div>Deine Punkte: 200 * {{$multiplier}} = {{200 * $multiplier}}</div>
+        <div id="teamHeading1" class="makeMarginBottomProfile settingsMiddle divWidth25">Punkte für das Workout: <span class="highlightTeamData">200</span></div>
+        <div id="teamHeading1" class="makeMarginBottomProfile divWidth25">Deine Streak: <span class="highlightTeamData">{{$multiplier}}</span></div>
+        <div id="teamHeading2" class="makeMarginBottomProfile divWidth25">Deine Punkte: 200 * {{$multiplier}} = <span class="highlightTeamData">{{200 * $multiplier}}</span></div>
     </div>
-    <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
+    <div class="makeButtonInMiddle">
+        <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
+        <div id="displayNoneWhenButtonClicked">Für manche der Übungen brauchst du ein Handtuch.</div> 
+    </div>
 
     <div style="margin-bottom:50px; margin-top:50px" id="push">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            {{$randomPush->name}}
+            {{$randomPush->name}} 
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomPush->src}}" class="imageWidth"> 
+        </div>
+        <div class="highlightTeamData makeMarginBottomProfile">
+            8 - 12 Wiederholungen
         </div>
         <div class="margingWorkoutInbetween widthWorkoutDescription">
             {{$randomPush->description}}
@@ -24,10 +30,13 @@
 
     <div style="margin-bottom:50px" id="leg">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            {{$randomLeg->name}}
+            {{$randomLeg->name}} 
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomLeg->src}}" class="imageWidth"> 
+        </div>
+        <div class="highlightTeamData makeMarginBottomProfile">
+            8 - 12 Wiederholungen
         </div>
         <div class="margingWorkoutInbetween widthWorkoutDescription">
             {{$randomLeg->description}}
@@ -36,10 +45,13 @@
 
     <div style="margin-bottom:50px" id="pull">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            {{$randomPull->name}}
+            {{$randomPull->name}} 
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomPull->src}}" class="imageWidth"> 
+        </div>
+        <div class="highlightTeamData makeMarginBottomProfile">
+            8 - 12 Wiederholungen
         </div>
         <div class="margingWorkoutInbetween widthWorkoutDescription">
             {{$randomPull->description}}
@@ -48,11 +60,14 @@
 
     <div style="margin-bottom:50px" id="backcore">
         <div class="ExerciseHeading margingWorkoutInbetween">
-            {{$randomBackCore->name}}
+            {{$randomBackCore->name}} 
         </div>
         <div class="margingWorkoutInbetween">
             <img src="{{$randomBackCore->src}}" class="imageWidth">
         </div> 
+        <div class="highlightTeamData makeMarginBottomProfile">
+            8 - 12 Wiederholungen
+        </div>
         <div class="margingWorkoutInbetween widthWorkoutDescription">
             {{$randomBackCore->description}}
         </div>
@@ -63,12 +78,14 @@
 <script>
     function countDown()
     {
-        const DURATION_IN_MINUTES = 16;
+        const DURATION_IN_MINUTES = 0.1;
         const ONE_MINUTE = 60000;
         var workoutDuration = DURATION_IN_MINUTES * ONE_MINUTE;
         var countDownDate = new Date().getTime() + workoutDuration;
 
         document.getElementById("WoStartButton").style.display = "none";
+        document.getElementById("displayNoneWhenButtonClicked").style.display = "none";
+        document.getElementById("clock").style.display = "block";
 
         var updateCountdownEverySecond = setInterval(function() {
             var todaysDateAndTime = new Date().getTime();
@@ -87,6 +104,7 @@
                 clearInterval(updateCountdownEverySecond);
                 document.getElementById("clock").innerHTML = "Geschafft!";
                 document.getElementById("showAfterWorkout").style.display = "block";
+                document.getElementById("backcore").style.display = "none";
                 updateUserAfterWorkoutIsFinished();
             }
         }, 1000);
@@ -114,18 +132,23 @@
             document.getElementById("pull").style.display = "block";
         }
         if (distance < fourthTimeslot && distance > fifthTimeslot){
+            document.getElementById("pull").style.display = "none";
             document.getElementById("backcore").style.display = "block";
         }
         if (distance < fifthTimeslot && distance > sixthTimeslot){
+            document.getElementById("backcore").style.display = "none";
             document.getElementById("push").style.display = "block";
         }
         if (distance < sixthTimeslot && distance > seventhTimeslot){
+            document.getElementById("push").style.display = "none";
             document.getElementById("leg").style.display = "block";
         }
         if (distance < seventhTimeslot && distance > eightTimeslot){
+            document.getElementById("leg").style.display = "none";
             document.getElementById("pull").style.display = "block";
         }
         if (distance < eightTimeslot && distance > 0){
+            document.getElementById("pull").style.display = "none";
             document.getElementById("backcore").style.display = "block";
         }
     }
@@ -141,5 +164,5 @@
             type:'GET',
             url:'/updateAfterWorkoutCompleted',
         });
-    }
+    }   
 </script>

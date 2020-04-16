@@ -2,14 +2,22 @@
 
 @section('content')
 <div class="container">
-    <div>Hey {{$username}}!</div>
-    <div>Fitnesslevel: {{$fitnesslevelString}}</div>
-    <div>Deine Punkte: {{$totalPoints}}</div>
-    <div>Dein Streak: {{$multiplier}}</div>
-    @if($multiplier < 5)
-    <div>Mache dein nächstes Workout innerhalb von 2 Tagen und dein Streak wird steigen!</div>
-    @elseif($multiplier == 5)
-    <div>Dein Streak ist am Maximum angekommen!</div>
-    @endif 
+    <div class="highlightTeamData defineWidthProfile" id="teamHeading1">Hey {{$username}}!</div>
+    </br>
+    <div id="containerProfile">
+        <div class="makeMarginBottomProfile">Aktivität: <span class="highlightProfileItems">{{$fitnesslevelString}}</span></div>
+        <div class="makeMarginBottomProfile">Team: <span class="highlightProfileItems">{{$team}}</span></div>
+        <div class="makeMarginBottomProfile">Deine Punkte: <span class="highlightProfileItems">{{$totalPoints}}</span></div>
+        <div class="makeMarginBottomProfile">Dein Streak: <span class="highlightProfileItems">{{$multiplier}}</span></div>
+        @if($multiplier < 5)
+        <details>
+            <summary>Was ist ein Streak?</summary>
+            <div>Mache dein nächstes Workout innerhalb von 2 Tagen und dein Streak wird steigen! Für jede Trainingseinheit bekommst du Punkte, welche mit deinem Streak multipliziert werden.</div>
+        </details>
+        
+        @elseif($multiplier == 5)
+        <div>Dein Streak ist am Maximum angekommen!</div>
+        @endif 
+    </div>
 </div>
 @endsection

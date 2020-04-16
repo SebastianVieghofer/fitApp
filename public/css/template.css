@@ -217,7 +217,8 @@ font-size: 1.2rem;
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link:focus {
-color: #5E42FF;
+color: #4A7780;
+text-decoration: underline;
 }
 
 .navbar-light .navbar-nav .nav-link.disabled {
@@ -228,7 +229,7 @@ color: rgba(0, 0, 0, 0.3);
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .nav-link.show,
 .navbar-light .navbar-nav .nav-link.active {
-color: #5E42FF;
+color: #000;
 }
 
 .navbar-light .navbar-toggler {
@@ -303,7 +304,7 @@ color: rgba(0, 0, 0, 0.9);
 
 .navbar-light .navbar-brand:hover,
 .navbar-light .navbar-brand:focus {
-  color: #5E42FF;
+  color: #4A7780;
 }
 
 .navbar-dark .navbar-brand {
@@ -1255,6 +1256,26 @@ border-bottom-right-radius: 0;
 .container {
   max-width: 960px;
 }
+#teamLeft{
+  float: left;
+  padding-left: 100px;
+}
+#teamRight{
+  float: right;
+  padding-right: 100px;
+}
+.teamHeading{
+  margin-left: -20px;
+}
+.defineWidthProfile{
+  width: 25%;
+}
+.settingsHeader{
+  width: 25%;
+}
+.divWidth25{
+  width: 25%;
+}
 }
 
 @media (min-width: 1200px) {
@@ -1363,7 +1384,10 @@ border-bottom-right-radius: 0;
   .stickyTime{
     position: sticky !important;
     top: 0;
-    background: #f8fafc;
+    background: #F5F5F5;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   #showAfterWorkout{
@@ -1382,3 +1406,66 @@ border-bottom-right-radius: 0;
   #backcore{
     display: none;
   }
+
+  #clock{
+    display: none;
+  }
+
+  .teamHeading{
+    font-weight: bold;
+    font-size: 1.3em;
+  }
+
+  .highlightTeamData{
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .TeamVsTeam{
+    text-align: center;
+  }
+
+  #teamHeading1{
+    /* text-decoration: underline;
+    -webkit-text-decoration-color: #85D5E6; 
+    text-decoration-color: #85D5E6; */
+    border-bottom: 10px solid #85D5E6;
+    /* border-bottom: 10px solid #94EDFF; */
+  }
+  #teamHeading2{
+    /* text-decoration: underline;
+    -webkit-text-decoration-color: #7AE6BC; 
+    text-decoration-color: #7AE6BC; */
+    border-bottom: 10px solid #7AE6BC;
+    /* border-bottom: 10px solid #87FFD1; */
+  }
+
+  #underlinePointsTeam1{
+    border-bottom: 3px solid #85D5E6;
+  }
+  #underlinePointsTeam2{
+    border-bottom: 3px solid #7AE6BC;
+  }
+
+  .makeMarginBottomProfile{
+    margin-bottom: 30px;
+  }
+
+  .highlightProfileItems{
+    font-weight: bold;
+  }
+
+  #containerProfile{
+    margin-left: 15px;
+    margin-top: 20px;
+  }
+
+  .settingsMiddle{
+    margin-top: 20px;
+  }
+
+  .makeButtonInMiddle{
+    text-align: center;
+  }
+  
+
