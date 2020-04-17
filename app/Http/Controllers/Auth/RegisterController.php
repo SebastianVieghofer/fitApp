@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'fitnesslevel' => $data['fitnesslevel'],
             '_teamID' => $teamController->organizeTeamsOnRegristation()
         ]);
-        $user->sendEmailVerificationNotification();
+        //$user->sendEmailVerificationNotification();
 
         return $user;
     }
