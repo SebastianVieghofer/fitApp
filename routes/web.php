@@ -36,7 +36,7 @@ Route::get('/teams', 'ReadController@showTeamsData')->middleware('auth')->name('
 //Update
 Route::post('/updateFitnessLevel', 'UpdateController@updateFitnessLevel')->middleware('auth')->name('updateFitnessLevel');
 
-Route::get('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutCompleted')->middleware('auth')->name('updateAfterWorkoutCompleted');
+Route::get('/updateAfterWorkoutCompleted', 'UpdateController@updateAfterWorkoutCompleted')->middleware('auth')->middleware('only.ajax')->name('updateAfterWorkoutCompleted');
 
 //Delete
 
