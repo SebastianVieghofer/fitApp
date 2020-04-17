@@ -74,7 +74,7 @@
 <script>
     function countDown()
     {
-        const DURATION_IN_MINUTES = 0.1;
+        const DURATION_IN_MINUTES = 16;
         const ONE_MINUTE = 60000;
         var workoutDuration = DURATION_IN_MINUTES * ONE_MINUTE;
         var countDownDate = new Date().getTime() + workoutDuration;
