@@ -78,7 +78,7 @@
 <script>
     function countDown()
     {
-        const DURATION_IN_MINUTES = 16;
+        const DURATION_IN_MINUTES = 0.1;
         const ONE_MINUTE = 60000;
         var workoutDuration = DURATION_IN_MINUTES * ONE_MINUTE;
         var countDownDate = new Date().getTime() + workoutDuration;
@@ -162,7 +162,7 @@
 
         $.ajax({
             type:'GET',
-            url:'/updateAfterWorkoutCompleted',
+            url:'{{URL::to('/updateAfterWorkoutCompleted')}}'
         });
     }   
 </script>
