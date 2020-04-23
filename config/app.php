@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Fitapp'),
+    'name' => env('APP_NAME', 'WorkoutBattle'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://fitapp.fit'),
+    'url' => env('APP_URL', 'http://flock-1481.students.fhstp.ac.at/public'),
 
     'asset_url' => env('ASSET_URL', null),
 
