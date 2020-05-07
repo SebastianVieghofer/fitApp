@@ -11,6 +11,7 @@
     <div class="makeButtonInMiddle">
         <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
         <div id="displayNoneWhenButtonClicked">Für manche der Übungen brauchst du ein Handtuch.</div> 
+        <div id="displayNoneWhenButtonClicked2">Diese Übungen erwarten dich:</div> 
     </div>
 
     <div style="margin-bottom:50px; margin-top:50px" id="push">
@@ -85,7 +86,12 @@
 
         document.getElementById("WoStartButton").style.display = "none";
         document.getElementById("displayNoneWhenButtonClicked").style.display = "none";
+        document.getElementById("displayNoneWhenButtonClicked2").style.display = "none";
         document.getElementById("clock").style.display = "block";
+        //document.getElementById("push").style.display = "none";
+        document.getElementById("leg").style.display = "none";
+        document.getElementById("pull").style.display = "none";
+        document.getElementById("backcore").style.display = "none";
 
         var updateCountdownEverySecond = setInterval(function() {
             var todaysDateAndTime = new Date().getTime();

@@ -1395,16 +1395,16 @@ border-bottom-right-radius: 0;
   }
 
   #push{
-    display: none;
+    display: block;
   }
   #leg{
-    display: none;
+    display: block;
   }
   #pull{
-    display: none;
+    display: block;
   }
   #backcore{
-    display: none;
+    display: block;
   }
 
   #clock{
