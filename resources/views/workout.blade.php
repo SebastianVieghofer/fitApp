@@ -7,6 +7,7 @@
     <div class="makeButtonInMiddle">
         <button type="button" onclick="countDown();" style="margin-bottom:20px;" id="WoStartButton">Starte dein Workout</button>
         <div id="displayNoneWhenButtonClicked">Für manche der Übungen brauchst du ein Handtuch.</div> 
+        <div id="displayNoneWhenButtonClicked3">Für jede Übung hast du <span class="highlightTeamData">2 Minuten</span> Zeit.</div>
         <div id="displayNoneWhenButtonClicked2">Diese Übungen erwarten dich:</div> 
     </div>
 
@@ -83,6 +84,7 @@
         document.getElementById("WoStartButton").style.display = "none";
         document.getElementById("displayNoneWhenButtonClicked").style.display = "none";
         document.getElementById("displayNoneWhenButtonClicked2").style.display = "none";
+        document.getElementById("displayNoneWhenButtonClicked3").style.display = "none";
         document.getElementById("clock").style.display = "block";
         document.getElementById("push").style.display = "none";
         document.getElementById("leg").style.display = "none";
