@@ -14,7 +14,7 @@
         <div id="displayNoneWhenButtonClicked3">Für jede Übung hast du <span class="highlightTeamData">2 Minuten</span> Zeit.</div> 
         <details id="displayNoneWhenButtonClicked4">
             <summary>Was ist ein Streak?</summary>
-            <div class="MargingBottom20px">Mache dein nächstes Workout innerhalb von 2 Tagen und dein Streak wird steigen! Für jede Trainingseinheit bekommst du Punkte, welche mit deinem Streak multipliziert werden.</div>
+            <div class="MargingBottom20px">Mache dein nächstes Workout innerhalb von 2 Tagen und dein Streak wird steigen! Ist deine letzte Trainingseinheit mehr als 2 Tage her wird dein Streak wieder auf 1.00 zurückgesetzt! Für jede Trainingseinheit bekommst du Punkte, welche mit deinem Streak multipliziert werden.</div>
         </details>
         <div id="displayNoneWhenButtonClicked2">Diese Übungen erwarten dich:</div> 
     </div>

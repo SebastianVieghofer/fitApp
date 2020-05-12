@@ -12,7 +12,7 @@
         @if($multiplier < 5)
         <details>
             <summary>Was ist ein Streak?</summary>
-            <div>Mache dein nächstes Workout innerhalb von 2 Tagen und dein Streak wird steigen! Für jede Trainingseinheit bekommst du Punkte, welche mit deinem Streak multipliziert werden.</div>
+            <div>Mache dein nächstes Workout innerhalb von 2 Tagen und dein Streak wird steigen! Ist deine letzte Trainingseinheit mehr als 2 Tage her wird dein Streak wieder auf 1.00 zurückgesetzt! Für jede Trainingseinheit bekommst du Punkte, welche mit deinem Streak multipliziert werden.</div>
         </details>
         
         @elseif($multiplier == 5)
